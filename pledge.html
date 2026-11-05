@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-Athar - Multi-Step Grant &amp; Waqf Pledging Studio</title>
+    <meta name="description" content="Allocate capital to verified civic infrastructure or establish perptual cash-waqf endowment funds.">
+
+    <link rel="dns-prefetch" href="htts://api.al-athar.org">
+    <link rel="preconnect" href="https://api.al-athar.org" crossorigin>
+    <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  </head>
+  <body>
+    <a href="#pledge-form" class="skip-link">Skip to pledging form</a>
+
+    <header>
+      <div class="brand-identity">
+        <a href="index.html" aria-label="Al-Athar Home">
+          <strong>Al-Athar (الأثر)</strong>
+        </a>
+        <p>Perpetual Civic Infrastructure &amp; Waqf Exchange</p>
+      </div>
+
+      <nav aria-label="Primary Platform">
+        <ul>
+          <li><a href="index.html">Public Ledger</a></li>
+          <li><a href="pledge.html" aria-current="page">Pledging Studio</a></li>
+          <li><a href="dossier.html">Project Dossiers</a></li>
+          <li><a href="exchange.html">Trustee Terminal</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <header>
+        <h1>Waqf Capital &amp; Infrastructure Pledging Studio</h1>
+        <p>Deploy immutable capital trnaches into audited civic assets with Shariah-compliant yield tracking.</p>
+      </header>
+
+      <nav aria-label="Pledge Studio Steps" class="wizard-nav">
+        <ol>
+          <li aria-current="step">
+            <span>Step 1:</span> Allocation Tranche
+          </li>
+          <li>
+            <span>Step 2:</span> Capital &amp; Currency
+          </li>
+          <li>
+            <span>Step 3:</span> Friduciary Identity
+          </li>
+          <li>
+            <span>Step 4:</span> Execution &amp; Agreement
+          </li>
+        </ol>
+      </nav>
+
+      <form id="pledge-form" action="/api/storage" method="post" novalidate>
+
+        <fiedlset class="form-step">
+          <legend>Step 1: Select Capital Allocation Strategy</legend>
+          <p class="fiedlset-desc">Choose between perpetual endowment principal perservation or direct one-time infrastructure gransts.</p>
+
+          <div class="radio-group">
+
+            <div class="radio-card">
+              <input
+              type="radio"
+              id="starategy-waqf"
+              name="allocation_startegy"
+              value="perpetual_waqf"
+              checked
+              required>
+              <label for="strategy_waqf">
+                   <strong>Pepeptual Cash Waqf Fund</strong>
+                   <span>Principal is locked into revenue-genrating solar/water assets. Only net operational yields are distribued forever.</span>
+              </label>
+            </div>
+
+            <div class="radio-card">
+              <input
+              type="radio",
+              id="strategy-direct",
+              name="allocation_startegy",
+              value="direct_grant",
+              required>
+              <label for="strategy-direct">
+                <strong>Direct Civic Infrastructure Grant</strong>
+                <span>100% of capital is deployed immediately into physical equipment and construction procurement milestones.</span>
+              </label>
+            </div>
+          </div>
+        </fiedlset>
+
+        <fieldset class="form-step">
+          <legend>Step 2: Capital Deployment &amp; Currency</legend>
+          <p class="fiedlset-desc">Specify pledge principal and choose the verified civic infrastructure redipient.</p>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="pledge-currency">Operating Currency</label>
+              <select id="pledge-currency" name="currency" required>
+                <option value="" disabled selected>Select Currency</option>
+                <option value="USD">USD - United States Dollar</option>
+                <option value="SAR">SAR - Saudi Riyal</option>
+                <option value="AED">AED - UAE Dirham</option>
+                <option value="ETB"><ETB - Ethiopian Birr</option>
+                <option value="EUR">EUR - Euro</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="pledge amount">Pledge Capital Amount</label>
+              <div class="input-currency-wrapper">
+              <span class="currency-symbol" aria-hidden="true">$</span>
+              <input
+                type="text"
+                id="pledge-amount"
+                name="amount"
+                inputmode="decimal"
+                placeholder="5,000.00"
+                pattern="^[0-9]+(\.[0-9]{1,2})?$"
+                required
+                autocomplete="off"
+                aria-describedby="amount-hint amount-error"
+                minlength="2"
+                maxlength="12">
+            </div>
+            <small id="amount-hint">Minimum allocation: $100.00 USD equivalent.</small>
+            <span id="amount-error" class="form-error-msg" role="alert" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <div class="form-field">
+          <label for="target-project">Target Civic Infrastructure Project</label>
+          <select id="target-project" name="target_project" required>
+            <option value="" disabled selected>Choose a verified deployment...</option>
+
+            <optgroup label="Renewable Energy &amp; Healthcare Power">
+              <option value="proj-solar-gode">Project #8841: Gode Referral Hospital Solar Grid (Ethiopia)</option>
+              <option value="proj-solar-sahel">Project #8844: Sahel Regional Clinic Microgrid (Mali)</option>
+            </optgroup>
+
+            <optgroup label="Clean Water &amp; Aquifers">
+              <option value="proj-water-tana">Project #9102: Lake Tana Deep Aquifer Desalinization</option>
+              <option value="proj-water-harar">Project #9105: Harar Rural Well Distribution Network</option>
+            </optgroup>
+
+            <optgroup label="Agricultural Resilience &amp; Cold-Chain">
+              <option value="proj-cold-sidama">Project #7410: Sidama Coffee Farmers Solar Cold-Hub #4</option>
+            </optgroup>
+          </select>
+          <small id="project-hint">All projects undergo on-site engineer verification before capital release.</small>
+        </div>
+
+        <div class="form-field">
+          <label for="yield-reinvestment">
+            <span>Perpetual Yield Reinvestment Ratio:</span>
+            <output id="reinvest-output" for="yield-reinvestment">20%</output>
+          </label>
+          <input
+            type="range"
+            id="yield-reinvestment"
+            name="reinvestment_rate"
+            min="10"
+            max="50"
+            step="5"
+            value="20"
+            aria-describedby="reinvest-hint">
+          <small id="reinvest-hint">Percentage of generated operational yield returned to principal to counter inflation.</small>
+        </div>
+        </fieldset>
+
+        <fieldset class="form-step">
+        <legend>Step 3: Fiduciary Contributor Identity</legend>
+        <p class="fieldset-desc">Provide donor or institutional trustee credentials for legal audit certification.</p>
+
+        <fieldset class="form-row">
+          <div class="form-field">
+            <label for="donor-name">Legal Entity or Individual Full Name</label>
+            <input
+              type="text"
+              id="donor-name"
+              name="donor_name"
+              required
+              autocomplete="name"
+              placeholder="e.g., Dr. Amina Vance or Crescent Trust LLC"
+              aria-describedby="name-hint">
+            <small id="name-hint">Will be inscribed on the immutable endowment deed unless anonymity is toggled.</small>
+          </div>
+
+          <div class="form-field">
+          <label for="tax-id">Institutional Tax / Waqf Registry ID (Optional)</label>
+          <input
+            type="text"
+            id="tax-id"
+            name="tax_identifier"
+            pattern="^[A-Z0-9-]{6,20}$"
+            placeholder="e.g., ET-WAQF-99201"
+            aria-describedby="tax-hint">
+          <small id="tax-hint">6-20 alphanumeric characters or hyphens. Leave blank for individual grassroots contributions.</small>
+        </div>
+
+        <div class="checkbox-field">
+          <input
+            type="checkbox"
+            id="donor-anonymous"
+            name="is_anonymous"
+            value="true">
+          <label for="donor-anonymous">
+            <strong>Preserve Public Anonymity on Ledger</strong>
+            <span>Your name will be cryptographically hashed (e.g., 0x9a...b4) on the public transparency explorer.</span>
+          </label>
+        </div>
+        </fieldset>
+
+        <fieldset class="form-step">
+        <legend>Step 4: Shariah Governance Terms &amp; Execution</legend>
+        <p class="fieldset-desc">Affirm AAOIFI fiduciary standards and attach authorized signatory proof if acting on behalf of an institution.</p>
+        <div class="form-field">
+          <label for="signatory-proof">
+            <span>Board Authorization / Signatory Mandate</span>
+            <small>(PDF or PGP Signature, max 10MB — Institutional allocators only)</small>
+          </label>
+          <input
+            type="file"
+            id="signatory-proof"
+            name="signatory_proof"
+            accept=".pdf,application/pdf,.asc,.sig"
+            aria-describedby="file-hint">
+          <small id="file-hint">Grassroots micro-donors may omit this attachment.</small>
+        </div>
+
+        <div class="checkbox-field">
+          <input
+            type="checkbox"
+            id="terms-consent"
+            name="terms_consent"
+            value="accepted"
+            required
+            aria-describedby="terms-error">
+          <label for="terms-consent">
+            <strong>I execute this immutable capital allocation under the Al-Athar Waqf Charter.</strong>
+            <span>I acknowledge that endowment principal is perpetual, non-refundable, and directed solely into audited civic infrastructure.</span>
+          </label>
+          <span id="terms-error" class="form-error-msg" role="alert" aria-live="polite"></span>
+        </div>
+        </fieldset>
+
+        <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+          <span>Execute Cryptographic Capital Pledge</span>
+        </button>
+        <button type="reset" class="btn btn-secondary">
+          <span>Reset Form Data</span>
+        </button>
+      </div>
+      </form>
+    </main>
+
+    <footer>
+      <nav aria-label="Legal and Compliance">
+        <ul>
+          <li><a href="index.html#shriah-fatwa">AAOIFI Compliance</a></li>
+          <li><a href="index.html#terms">Fiduciary Terms</a></li>
+        </ul>
+      </nav>
+      <p><small>&copy; <time datetime="2026">2026</time> Al-Athar Civic Endowment </small></p>
+    </footer>
+  </body>
+</html>
