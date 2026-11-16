@@ -1,0 +1,189 @@
+
+.dossier-header {
+  margin-block-end: var(--space-xl);
+  padding-block-end: var(--space-lg);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.project-badge {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-block-end: var(--space-sm);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-accent-gold);
+}
+
+.dossier-header h1 {
+  font-size: var(--font-size-2xl);
+  line-height: 1.2;
+  margin-block-end: var(--space-xs);
+}
+
+.dossier-header p {
+  color: var(--color-text-secondary);
+  max-width: 68ch;
+}
+
+/* --- SECTION 1: RESPONSIVE HERO MEDIA & FIGURE --- */
+section[aria-labelledby="media-heading"] {
+  margin-block-end: var(--space-2xl);
+}
+
+section[aria-labelledby="media-heading"] h2,
+section[aria-labelledby="timeline-heading"] h2 {
+  font-size: var(--font-size-lg);
+  margin-block-end: var(--space-md);
+  color: var(--color-text-primary);
+}
+
+.media-container {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.media-container picture {
+  display: block;
+  background-color: var(--color-bg-base);
+}
+
+.media-container img {
+  inline-size: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.media-container figcaption {
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  border-block-start: 1px solid var(--color-border-subtle);
+  line-height: 1.5;
+}
+
+.media-container figcaption strong {
+  color: var(--color-accent-gold);
+  font-family: var(--font-family-mono);
+}
+
+/* --- SECTION 2: CHRONOLOGICAL AUDIT TIMELINE (<ol>) --- */
+.timeline-list {
+  list-style: none;
+  position: relative;
+  padding-inline-start: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* Vertical Timeline Rail (Logical Start Edge) */
+.timeline-list::before {
+  content: "";
+  position: absolute;
+  inset-block: 0.5rem;
+  inset-inline-start: 0.45rem;
+  inline-size: 2px;
+  background-color: var(--color-border);
+}
+
+.timeline-event {
+  position: relative;
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  transition: border-color var(--transition-fast);
+}
+
+.timeline-event:hover {
+  border-color: var(--color-accent-gold);
+}
+
+/* Circular Node Marker on the Timeline Rail */
+.timeline-event::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 1.35rem;
+  /* Positions dot centered directly over the 2px vertical rail */
+  inset-inline-start: calc((var(--space-xl) * -1) + 0.1rem);
+  inline-size: 0.85rem;
+  block-size: 0.85rem;
+  border-radius: 50%;
+  background-color: var(--color-accent-gold);
+  border: 2px solid var(--color-bg-base);
+  box-shadow: 0 0 0 2px var(--color-accent-gold);
+}
+
+.event-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-block-end: var(--space-xs);
+}
+
+.event-meta time {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.badge-success {
+  color: var(--color-status-success-text);
+  background-color: rgba(63, 185, 80, 0.12);
+  border: 1px solid var(--color-status-success);
+}
+
+.timeline-event h3 {
+  font-size: var(--font-size-md);
+  color: var(--color-text-primary);
+  margin-block-end: var(--space-xs);
+}
+
+.timeline-event > p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-block-end: var(--space-md);
+  max-width: 72ch;
+}
+
+/* --- AUDIT ATTESTATION DESCRIPTION LIST (<dl>) --- */
+.audit-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-bg-base);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+}
+
+.audit-details > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  align-items: baseline;
+}
+
+.audit-details dt {
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.audit-details dd {
+  color: var(--color-text-primary);
+}
+
+.audit-details code {
+  font-family: var(--font-family-mono);
+  color: var(--color-accent-gold);
+  background-color: var(--color-accent-gold-subtle);
+  padding: 1px var(--space-2xs);
+  border-radius: 3px;
+}

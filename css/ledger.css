@@ -1,0 +1,259 @@
+
+.ledger-workspace {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  margin-block-start: var(--space-xl);
+}
+
+@media (min-width: 992px) {
+  .ledger-workspace {
+    grid-template-columns: 2.2fr 1fr;
+    align-items: start;
+  }
+}
+
+/* --- SECTION 1: INTRINSIC RESPONSIVE KPI METRICS GRID --- */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: var(--space-md);
+  margin-block: var(--space-lg);
+}
+
+.kpi-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-xs);
+  transition: border-color var(--transition-fast);
+}
+
+.kpi-card:hover {
+  border-color: var(--color-accent-gold);
+}
+
+.kpi-card dt {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.kpi-card dd {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-mono);
+}
+
+.kpi-card dd small {
+  display: block;
+  font-size: var(--font-size-xs);
+  font-family: var(--font-family-sans);
+  color: var(--color-status-success-text);
+  font-weight: 500;
+  margin-block-start: var(--space-2xs);
+}
+
+/* --- SECTION 2: ACCESSIBLE FINANCIAL DATA TABLE --- */
+.table-scroll-container {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  margin-block-start: var(--space-md);
+}
+
+.table-scroll-container:focus-visible {
+  outline: 2px solid var(--color-accent-gold);
+  outline-offset: -2px;
+}
+
+.ledger-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: start;
+  font-size: var(--font-size-sm);
+}
+
+.ledger-table caption {
+  padding: var(--space-md);
+  font-weight: 700;
+  font-size: var(--font-size-md);
+  text-align: start;
+  background-color: var(--color-bg-elevated);
+  border-block-end: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.ledger-table th,
+.ledger-table td {
+  padding: var(--space-sm) var(--space-md);
+  border-block-end: 1px solid var(--color-border-subtle);
+  white-space: nowrap;
+}
+
+.ledger-table thead th {
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 2;
+}
+
+.ledger-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Row-header transaction hash */
+.ledger-table th[scope="row"] code {
+  font-family: var(--font-family-mono);
+  color: var(--color-accent-gold);
+  font-weight: 600;
+}
+
+/* Monospace alignment for financial amounts and dates */
+.ledger-table td:nth-child(4),
+.ledger-table td:nth-child(5) {
+  font-family: var(--font-family-mono);
+}
+
+/* --- SECTION 3: COMPLEMENTARY ASIDE & METRIC GAUGES --- */
+aside[aria-labelledby="yield-heading"] {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+aside[aria-labelledby="yield-heading"] h2 {
+  font-size: var(--font-size-md);
+  border-block-end: 1px solid var(--color-border-subtle);
+  padding-block-end: var(--space-xs);
+  color: var(--color-text-primary);
+}
+
+.breakdown-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.breakdown-card h3 {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.breakdown-card p {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.metric-meter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  margin-block-start: var(--space-xs);
+}
+
+.metric-meter-group label {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-xs);
+}
+
+.metric-meter-group label strong {
+  font-family: var(--font-family-mono);
+  color: var(--color-text-primary);
+}
+
+/* STYLING NATIVE <progress> */
+progress {
+  width: 100%;
+  height: 10px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: none;
+  background-color: var(--color-bg-base);
+}
+
+progress::-webkit-progress-bar {
+  background-color: var(--color-bg-base);
+}
+
+progress::-webkit-progress-value {
+  background-color: var(--color-accent-gold);
+  border-radius: var(--radius-sm);
+}
+
+progress::-moz-progress-bar {
+  background-color: var(--color-accent-gold);
+  border-radius: var(--radius-sm);
+}
+
+/* STYLING NATIVE <meter> */
+meter {
+  width: 100%;
+  height: 10px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background-color: var(--color-bg-base);
+}
+
+meter::-webkit-meter-bar {
+  background: var(--color-bg-base);
+  border: none;
+  height: 10px;
+  border-radius: var(--radius-sm);
+}
+
+meter::-webkit-meter-optimum-value {
+  background: var(--color-status-success);
+}
+
+meter::-webkit-meter-suboptimum-value {
+  background: var(--color-status-pending);
+}
+
+meter::-webkit-meter-even-less-good-value {
+  background: var(--color-status-danger);
+}
+
+/* SECTOR DISTRIBUTION LIST */
+.sector-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-block-start: var(--space-xs);
+}
+
+.sector-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-xs);
+  padding: var(--space-2xs) var(--space-xs);
+  background-color: var(--color-bg-elevated);
+  border-radius: var(--radius-sm);
+}
+
+.sector-list data {
+  font-family: var(--font-family-mono);
+  font-weight: 700;
+  color: var(--color-accent-gold);
+}

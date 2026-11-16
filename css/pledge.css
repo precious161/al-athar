@@ -1,0 +1,337 @@
+
+#main-content > header {
+  margin-block-end: var(--space-xl);
+}
+
+#main-content > header h1 {
+  font-size: var(--font-size-2xl);
+  line-height: 1.2;
+  margin-block-end: var(--space-xs);
+}
+
+#main-content > header p {
+  color: var(--color-text-secondary);
+  max-width: 65ch;
+}
+
+/* --- WIZARD PROGRESS STEPPER (<nav class="wizard-nav">) --- */
+.wizard-nav {
+  margin-block-end: var(--space-xl);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+
+.wizard-nav ol {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: var(--space-sm);
+  list-style: none;
+}
+
+.wizard-nav li {
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-base);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+}
+
+.wizard-nav li span {
+  display: block;
+  font-family: var(--font-family-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-block-end: 2px;
+}
+
+.wizard-nav li[aria-current="step"] {
+  background-color: var(--color-accent-gold-subtle);
+  border-color: var(--color-accent-gold);
+  color: var(--color-text-primary);
+}
+
+.wizard-nav li[aria-current="step"] span {
+  color: var(--color-accent-gold);
+  font-weight: 700;
+}
+
+/* --- FORM CONTAINER & FIELDSET ARCHITECTURE --- */
+#pledge-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  max-width: 840px;
+}
+
+.form-step {
+  /* Crucial engine fix: overrides browser default min-width: min-content on fieldset */
+  min-inline-size: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.form-step legend {
+  padding-inline: var(--space-xs);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-accent-gold);
+}
+
+.fieldset-desc {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  margin-block-start: calc(var(--space-sm) * -1);
+}
+
+/* --- RADIO SELECTION CARDS (:has() RELATIONAL STATE) --- */
+.radio-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: var(--space-md);
+}
+
+.radio-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background-color: var(--color-bg-base);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.radio-card:hover {
+  border-color: var(--color-text-secondary);
+}
+
+/* Parent reacts directly to child radio state without JavaScript */
+.radio-card:has(input[type="radio"]:checked) {
+  border-color: var(--color-accent-gold);
+  background-color: var(--color-accent-gold-subtle);
+}
+
+.radio-card:has(input[type="radio"]:focus-visible) {
+  outline: 2px solid var(--color-accent-gold);
+  outline-offset: 2px;
+}
+
+.radio-card input[type="radio"] {
+  accent-color: var(--color-accent-gold);
+  inline-size: 1.15rem;
+  block-size: 1.15rem;
+  margin-block-start: 0.2rem;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.radio-card label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  cursor: pointer;
+}
+
+.radio-card label strong {
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+}
+
+.radio-card label span {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* --- FORM ROWS & INPUT CONTROLS --- */
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: var(--space-md);
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.form-field label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-xs);
+}
+
+.form-field input[type="text"],
+.form-field input[type="email"],
+.form-field select {
+  inline-size: 100%;
+  padding: var(--space-sm) var(--space-md);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-base);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast);
+}
+
+.form-field input[type="text"]:focus-visible,
+.form-field input[type="email"]:focus-visible,
+.form-field select:focus-visible {
+  outline: 2px solid var(--color-accent-gold);
+  outline-offset: 1px;
+  border-color: var(--color-accent-gold);
+}
+
+/* --- CURRENCY PREFIX WRAPPER --- */
+.input-currency-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.currency-symbol {
+  position: absolute;
+  inset-inline-start: var(--space-md);
+  color: var(--color-text-muted);
+  font-family: var(--font-family-mono);
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.input-currency-wrapper input {
+  padding-inline-start: calc(var(--space-md) + 1rem);
+  font-family: var(--font-family-mono);
+}
+
+/* --- RANGE SLIDER & LIVE OUTPUT --- */
+input[type="range"] {
+  inline-size: 100%;
+  accent-color: var(--color-accent-gold);
+  cursor: pointer;
+}
+
+output {
+  font-family: var(--font-family-mono);
+  font-weight: 700;
+  color: var(--color-accent-gold);
+  background-color: var(--color-accent-gold-subtle);
+  padding: 2px var(--space-xs);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+}
+
+/* --- FILE UPLOAD INPUT --- */
+input[type="file"] {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-base);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm);
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+  font-family: inherit;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-xs) var(--space-sm);
+  margin-inline-end: var(--space-md);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: var(--color-border);
+}
+
+/* --- CHECKBOX CARDS --- */
+.checkbox-field {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background-color: var(--color-bg-base);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.checkbox-field input[type="checkbox"] {
+  accent-color: var(--color-accent-gold);
+  inline-size: 1.15rem;
+  block-size: 1.15rem;
+  margin-block-start: 0.2rem;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.checkbox-field label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  cursor: pointer;
+}
+
+.checkbox-field label strong {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+}
+
+.checkbox-field label span {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+/* --- HINTS & NATIVE :user-invalid ERROR STATES --- */
+.form-field small {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.form-error-msg {
+  font-size: var(--font-size-xs);
+  color: #ff7b72;
+  font-weight: 500;
+  min-block-size: 1em;
+}
+
+/* Triggers ONLY after user interaction—never on fresh page load */
+.form-field input:user-invalid,
+.form-field select:user-invalid {
+  border-color: var(--color-status-danger);
+  background-color: rgba(218, 54, 51, 0.08);
+}
+
+.form-field input:user-valid {
+  border-color: var(--color-status-success);
+}
+
+/* --- ACTION BUTTON BAR --- */
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  padding-block-start: var(--space-sm);
+}
